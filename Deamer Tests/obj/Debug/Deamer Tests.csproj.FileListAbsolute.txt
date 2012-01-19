@@ -1,0 +1,7 @@
+c:\users\john\documents\visual studio 2010\Projects\Dream\Deamer Tests\bin\Debug\Deamer Tests.dll
+c:\users\john\documents\visual studio 2010\Projects\Dream\Deamer Tests\bin\Debug\Deamer Tests.pdb
+c:\users\john\documents\visual studio 2010\Projects\Dream\Deamer Tests\bin\Debug\Dream.dll
+c:\users\john\documents\visual studio 2010\Projects\Dream\Deamer Tests\bin\Debug\Dream.pdb
+c:\users\john\documents\visual studio 2010\Projects\Dream\Deamer Tests\obj\Debug\ResolveAssemblyReference.cache
+c:\users\john\documents\visual studio 2010\Projects\Dream\Deamer Tests\obj\Debug\Deamer Tests.dll
+c:\users\john\documents\visual studio 2010\Projects\Dream\Deamer Tests\obj\Debug\Deamer Tests.pdb
