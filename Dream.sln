@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dream", "Dream\Dream.csproj", "{79634F69-F5A7-4E6B-B273-079B3CC00FAC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheDreamer", "Dream\TheDreamer.csproj", "{79634F69-F5A7-4E6B-B273-079B3CC00FAC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Deamer Tests", "Deamer Tests\Deamer Tests.csproj", "{E86F8319-B6D2-4EB3-A32B-E759FD7A3C42}"
 EndProject

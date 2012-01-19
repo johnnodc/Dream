@@ -49,9 +49,9 @@
     <Compile Include="WebURLTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Dream\Dream.csproj">
+    <ProjectReference Include="..\Dream\TheDreamer.csproj">
       <Project>{79634F69-F5A7-4E6B-B273-079B3CC00FAC}</Project>
-      <Name>Dream</Name>
+      <Name>TheDreamer</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

@@ -11,8 +11,8 @@ using Java.Net;
 
 namespace Dream
 {
-    [Activity(Label = "Dream", MainLauncher = true)]
-    public class ShowMessage : Activity
+    [Activity(Label = "Show Message")]
+    public class ShowMessageActivity : Activity
     {
 
         protected override void OnCreate(Bundle bundle)
