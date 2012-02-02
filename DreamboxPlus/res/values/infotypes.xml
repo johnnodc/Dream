@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+   <string-array name="infoTypeList">  
+       <item>@string/infoType1</item>  
+       <item>@string/infoType2</item>  
+       <item>@string/infoType3</item>
+       <item>@string/infoType4</item>    
+   </string-array>   
+</resources>

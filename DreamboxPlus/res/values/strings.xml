@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Dreambox++</string>
+    
+    <string name="infoType1">Yes/No</string>  
+    <string name="infoType2">Info</string>  
+    <string name="infoType3">Message</string>
+    <string name="infoType4">Attention</string>
+    
+    <string name="ipAddress">Connection address</string>
+    
+    <string name="message">Message</string>
+    
+    <string name="send">Send</string>
+    
+    <string name="testConnection">Test connection</string>
+    <string name="messageType">Message type</string>
+    <string name="timeout">Timeout (secs)</string>
+    </resources>
