@@ -1,0 +1,88 @@
+package com.dream;
+
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+
+public class WebAddressBuilder
+{
+	
+    final static String IPNumber = "192.168.0.3";
+
+    private static String basicURL;
+
+    private static String BasicURL()
+    {
+        if (basicURL == null)
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append("http://");
+            stringBuilder.append(IPNumber);
+            stringBuilder.append("/web/");
+
+            basicURL = stringBuilder.toString();                     
+        }
+
+        return basicURL;        
+    }
+    
+    public static String SendMessage(String message, long infoType, long timeout)
+    {
+    	String formURL = "message?text=" + message + "&type=" + infoType + "&timeout=" + timeout;
+    	
+    	String result = Send(formURL);
+    	
+        String outputMessage;
+    	if (result.equals("OK"))
+        {
+            outputMessage = "Message Sent OK";
+        }
+        else
+        {
+        	outputMessage = "Oops failed to send message " + result;
+        }
+    	
+    	return outputMessage;    	
+    }
+    
+    private static String Send(String URL)
+    {
+    	URL url = null;
+    	try 
+    	{
+    		url = new URL(WebAddressBuilder.BasicURL() + URL);
+    	} 
+    	catch (MalformedURLException e) 
+    	{
+    		e.printStackTrace();
+    	}
+    	
+    	String result = "";
+    	HttpURLConnection urlConnection = null;
+		try 
+		{
+			urlConnection = (HttpURLConnection)url.openConnection();
+		  
+			try 
+			{
+				result = urlConnection.getResponseMessage();
+			} 
+			catch (IOException e) 
+			{
+				e.printStackTrace();
+			}	  
+		} 
+		catch (IOException e1) 
+		{
+			e1.printStackTrace();
+		}		            
+        finally
+        {
+            urlConnection.disconnect();
+        }
+		return result; 
+    }
+
+	
+}

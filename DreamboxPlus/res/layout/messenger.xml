@@ -9,7 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/message"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceSmall" />
     
  	<EditText
 	    android:id="@+id/SendMessageEditText"
@@ -17,38 +17,65 @@
 	    android:layout_height="wrap_content"
 	    android:inputType="text" />
 
- 	<TextView
- 	    android:id="@+id/textView2"
- 	    android:layout_width="wrap_content"
- 	    android:layout_height="wrap_content"
- 	    android:text="@string/messageType"
- 	    android:textAppearance="?android:attr/textAppearanceMedium" />
-	<Spinner  
-	    android:id="@+id/SpinnerInfoType"  
-	    android:layout_height="wrap_content"  
-	    android:layout_width="fill_parent"  
-	    android:entries="@array/infoTypeList"/>
+ 	<TableLayout
+ 	    android:id="@+id/tableLayout1"
+ 	    android:layout_width="fill_parent"
+ 	    android:layout_height="wrap_content" >
 
-	<TextView
-	    android:id="@+id/textView3"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:text="@string/timeout"
-	    android:textAppearance="?android:attr/textAppearanceMedium" />
+ 	    <TableRow
+ 	        android:id="@+id/tableRow1"
+ 	        android:layout_width="wrap_content"
+ 	        android:layout_height="wrap_content" >
+ 	        
+	 	    <TextView
+		 	    android:id="@+id/textView2"
+		 	    android:layout_width="wrap_content"
+		 	    android:layout_height="wrap_content"
+		 	    android:text="@string/messageType"
+		 	    android:textAppearance="?android:attr/textAppearanceSmall" />
 
-	<EditText
-	    android:id="@+id/timeoutEdit"
+		 	<TextView
+		 	    android:id="@+id/textView3"
+		 	    android:layout_width="wrap_content"
+		 	    android:layout_height="wrap_content"
+		 	    android:text="@string/timeout"
+		 	    android:textAppearance="?android:attr/textAppearanceSmall" />
+		 	        
+ 	    </TableRow>
+
+ 	    <TableRow
+ 	        android:id="@+id/tableRow2"
+ 	        android:layout_width="wrap_content"
+ 	        android:layout_height="wrap_content" >
+ 	
+	 	    <Spinner android:id="@+id/SpinnerInfoType"
+		        android:layout_width="129dp"
+		        android:layout_height="wrap_content"
+		        android:entries="@array/infoTypeList" />
+		    	
+		    <EditText
+		        android:id="@+id/timeoutEdit"
+		        android:layout_width="81dp"
+		        android:layout_height="wrap_content"
+		        android:layout_weight="0.11"
+		        android:inputType="number" >
+	
+		        <requestFocus />
+		    </EditText>
+ 	    </TableRow>
+
+ 	 </TableLayout>
+	<LinearLayout
 	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content"
-	    android:inputType="number" >
+	    android:layout_height="fill_parent"
+	    android:orientation="vertical" >
 
-	    <requestFocus />
-	</EditText>
-
-	<Button
-	    android:id="@+id/SendMessageButton"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:text="@string/send" />
+	    <Button
+	        android:id="@+id/SendMessageButton"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_gravity="right"
+	        android:text="@string/send" />
+	</LinearLayout>
 
 </LinearLayout>

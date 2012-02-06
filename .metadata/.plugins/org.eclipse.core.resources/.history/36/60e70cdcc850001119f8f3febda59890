@@ -1,0 +1,15 @@
+package com.dream.test;
+
+import android.test.ActivityInstrumentationTestCase2;
+
+import com.dream.MessengerActivity;
+import com.dream.SettingsActivity;
+
+public class SettingsActivityTest  extends ActivityInstrumentationTestCase2<SettingsActivity>{
+
+	
+	public SettingsActivityTest() {
+	      super("com.dream", MessengerActivity.class);
+	    }
+
+}

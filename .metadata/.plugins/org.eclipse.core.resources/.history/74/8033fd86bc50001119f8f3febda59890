@@ -1,0 +1,47 @@
+package com.dream.test;
+
+import android.test.ActivityInstrumentationTestCase2;
+import android.widget.TextView;
+
+import com.dream.DreamboxPlusActivity;
+import com.dream.WebAddressBuilder;
+import com.dream.R;;
+import com.dream.MessengerActivity;
+
+public class WebAddressBuilderTest extends ActivityInstrumentationTestCase2<DreamboxPlusActivity> {
+	
+	private MessengerActivity mActivity;  // the activity under test
+    private TextView mView;          // the activity's TextView (the only view)
+    private String resourceString;
+	
+	public WebAddressBuilderTest() {
+	      super("com.dream", MessengerActivity.class);
+	    }
+	
+	public WebAddressBuilderTest(String pkg,
+			Class<DreamboxPlusActivity> activityClass) {
+		super(pkg, activityClass);
+		// TODO Auto-generated constructor stub
+	}
+
+	 @Override
+	    protected void setUp() throws Exception {
+	        super.setUp();
+	        mActivity = this.getActivity();
+	        mView = (TextView) mActivity.findViewById(R.id.connectionAddressText);
+	        resourceString = mActivity.getString(R.string.message);
+	    }
+	    public void testPreconditions() {
+	      assertNotNull(mView);
+	    }
+	    public void testText() {
+	      assertEquals(resourceString,(String)mView.getText());
+	    }
+	    
+	public void TestSendMessage()
+	{
+		String test = WebAddressBuilder.SendMessage("abc", 0, 0);
+		
+		assertTrue(test.contains("abc"));	
+	}
+}

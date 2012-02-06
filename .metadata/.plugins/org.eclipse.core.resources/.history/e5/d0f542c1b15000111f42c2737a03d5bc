@@ -1,0 +1,15 @@
+package com.dream;
+
+import junit.framework.TestCase;
+
+public class WebAddressBuilderTest extends TestCase {
+	
+	public void SendMessageTest()
+	{
+		String test = WebAddressBuilder.SendMessage("abc", 0, 0);
+		
+		assertEquals(test, "nope");
+		
+	}
+
+}

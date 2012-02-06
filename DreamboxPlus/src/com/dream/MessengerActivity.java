@@ -14,13 +14,13 @@ public class MessengerActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 	    
-	    setContentView(R.layout.messenger);
+	    setContentView(R.layout.messenger);	    	    
 
 	    final Button sendButton = (Button) findViewById(R.id.SendMessageButton);
         final EditText messageText = (EditText)findViewById(R.id.SendMessageEditText);        
         final Spinner infoSpinner = (Spinner) findViewById(R.id.SpinnerInfoType);
-        final EditText timeoutEdit  = (EditText) findViewById(R.id.timeoutEdit);
-        
+        final EditText timeoutEdit  = (EditText) findViewById(R.id.timeoutEdit);        
+                      
         timeoutEdit.setText("10");
         infoSpinner.setSelection(1);
         
@@ -32,13 +32,14 @@ public class MessengerActivity extends Activity {
             	if(messageText.getText().toString().length() == 0)
             	{
             		ToastMessage.Show("Message text is missing", getApplicationContext());
+            		return;
             	}
             	
                	long infoType = infoSpinner.getSelectedItemId();
                	
                	String timeoutString = timeoutEdit.getText().toString();
                	
-               	long timeout = Long.parseLong(timeoutString);
+               	long timeout = Long.parseLong(timeoutString);               	               
                	
             	String outputMessage = WebAddressBuilder.SendMessage(messageText.getText().toString(), infoType, timeout);
                 

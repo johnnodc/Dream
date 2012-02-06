@@ -1,0 +1,27 @@
+import com.dream.WebAddressBuilder;
+
+import junit.framework.TestCase;
+
+
+public class DreamboxJUnitTest extends TestCase {
+
+	public DreamboxJUnitTest(String name) {
+		super(name);
+	}
+
+	protected void setUp() throws Exception {
+		super.setUp();
+	}
+
+	protected void tearDown() throws Exception {
+		super.tearDown();
+	}
+	
+	public void SendMessageTest()
+	{
+		String test = WebAddressBuilder.SendMessage("abc", 0, 0);
+		
+		assertTrue(test.contains("abc"));	
+	}
+
+}

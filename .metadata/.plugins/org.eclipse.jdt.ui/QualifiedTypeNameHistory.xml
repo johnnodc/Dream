@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="android.view.Window"/>
+<fullyQualifiedTypeName name="android.test.ActivityInstrumentationTestCase2"/>
+<fullyQualifiedTypeName name="com.dream.DreamboxPlusActivity"/>
+<fullyQualifiedTypeName name="com.dream.R"/>
+<fullyQualifiedTypeName name="android.widget.TextView"/>
+<fullyQualifiedTypeName name="com.dream.MessengerActivity"/>
+<fullyQualifiedTypeName name="com.dream.test.R.drawable"/>
+<fullyQualifiedTypeName name="com.dream.R.id"/>
+<fullyQualifiedTypeName name="android.widget.Button"/>
+<fullyQualifiedTypeName name="com.dream.SettingsActivity"/>
+<fullyQualifiedTypeName name="android.view.View.OnClickListener"/>
+</qualifiedTypeNameHistroy>

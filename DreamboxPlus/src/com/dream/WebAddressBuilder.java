@@ -8,27 +8,30 @@ import java.net.URL;
 public class WebAddressBuilder
 {
 	
-    final static String IPNumber = "192.168.0.3";
+    static String IPNumber;
 
     private static String basicURL;
 
+    public static void SetIPAddress(String ipAddress)
+    {
+    	IPNumber = ipAddress;
+    }
+    
     private static String BasicURL()
     {
-        if (basicURL == null)
-        {
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append("http://");
-            stringBuilder.append(IPNumber);
-            stringBuilder.append("/web/");
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("http://");
+        stringBuilder.append(IPNumber);
+        stringBuilder.append("/web/");
 
-            basicURL = stringBuilder.toString();                     
-        }
-
+        basicURL = stringBuilder.toString();                     
+        
         return basicURL;        
     }
     
     public static String SendMessage(String message, long infoType, long timeout)
     {
+    	    	    	
     	String formURL = "message?text=" + message + "&type=" + infoType + "&timeout=" + timeout;
     	
     	String result = Send(formURL);
@@ -44,6 +47,22 @@ public class WebAddressBuilder
         }
     	
     	return outputMessage;    	
+    }
+         
+    public static boolean TestConnection()
+    {
+    	String formURL = "about";
+    	
+    	String result = Send(formURL);
+    	
+    	if (result.equals("OK"))
+        {
+            return true;
+        }
+        else
+        {
+        	return false;
+        }    	    	
     }
     
     private static String Send(String URL)
@@ -64,6 +83,8 @@ public class WebAddressBuilder
 		{
 			urlConnection = (HttpURLConnection)url.openConnection();
 		  
+			urlConnection.setConnectTimeout(5000);
+			
 			try 
 			{
 				result = urlConnection.getResponseMessage();
@@ -83,6 +104,4 @@ public class WebAddressBuilder
         }
 		return result; 
     }
-
-	
 }

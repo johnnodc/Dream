@@ -6,8 +6,8 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.widget.TabHost;
 
-public class DreamboxPlusActivity extends TabActivity  {
-    /** Called when the activity is first created. */
+public class DreamboxPlusActivity extends TabActivity  {	
+	    
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,15 +20,18 @@ public class DreamboxPlusActivity extends TabActivity  {
 
         // Create an Intent to launch an Activity for the tab (to be reused)
         intent = new Intent().setClass(this, SettingsActivity.class);
+        
         spec = tabHost.newTabSpec("settings").setIndicator("Settings",
                           res.getDrawable(R.drawable.ic_tab_ic_tab_settings))
                       .setContent(intent);
         tabHost.addTab(spec);
 
         intent = new Intent().setClass(this, MessengerActivity.class);
+        
         spec = tabHost.newTabSpec("messenger").setIndicator("Messenger",
                           res.getDrawable(R.drawable.ic_tab_ic_tab_message))
                       .setContent(intent);
+    
         tabHost.addTab(spec);
 
         tabHost.setCurrentTab(1);

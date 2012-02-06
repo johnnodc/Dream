@@ -1,0 +1,7 @@
+package com.dream;
+
+import junit.framework.TestCase;
+
+public class WebAddressBuilderTest extends TestCase {
+
+}

@@ -1,0 +1,50 @@
+package com.dream;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
+
+public class MessengerActivity extends Activity {
+
+	/** Called when the activity is first created. */
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+	    super.onCreate(savedInstanceState);
+	    
+	    setContentView(R.layout.messenger);
+
+	    final Button sendButton = (Button) findViewById(R.id.SendMessageButton);
+        final EditText messageText = (EditText)findViewById(R.id.SendMessageEditText);        
+        final Spinner infoSpinner = (Spinner) findViewById(R.id.SpinnerInfoType);
+        final EditText timeoutEdit  = (EditText) findViewById(R.id.timeoutEdit);
+        
+        timeoutEdit.setText("10");
+        infoSpinner.setSelection(1);
+        
+        sendButton.setOnClickListener(new View.OnClickListener() 
+        {
+            public void onClick(View v) 
+            {
+
+            	if(messageText.getText().toString().length() == 0)
+            	{
+            		ToastMessage.Show("Message text is missing", getApplicationContext());
+            	}
+            	
+               	long infoType = infoSpinner.getSelectedItemId();
+               	
+               	String timeoutString = timeoutEdit.getText().toString();
+               	
+               	long timeout = Long.parseLong(timeoutString);
+               	
+            	String outputMessage = WebAddressBuilder.SendMessage(messageText.getText().toString(), infoType, timeout);
+                
+            	ToastMessage.Show(outputMessage, getApplicationContext());                 
+             }
+        });
+	}
+
+}
