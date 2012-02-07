@@ -27,7 +27,7 @@ public class SettingsActivityTest  extends ActivityInstrumentationTestCase2<Sett
         super.setUp();
         mActivity = this.getActivity();
         
-        connectionEdit = (EditText) mActivity.findViewById(R.id.connectionAddressEditText);               
+        connectionEdit = (EditText) mActivity.findViewById(R.id.connectionAddressEditText1);               
     }
 	
 	public void testPreconditions() 

@@ -9,12 +9,15 @@ public class WebAddressBuilder
 {
 	
     static String IPNumber;
+    
+    static String PortNumber;
 
     private static String basicURL;
 
-    public static void SetIPAddress(String ipAddress)
+    public static void SetIPAddress(String ipAddress, String port)
     {
     	IPNumber = ipAddress;
+    	PortNumber = port;
     }
     
     private static String BasicURL()
@@ -22,6 +25,8 @@ public class WebAddressBuilder
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("http://");
         stringBuilder.append(IPNumber);
+        stringBuilder.append(":");
+        stringBuilder.append(PortNumber);
         stringBuilder.append("/web/");
 
         basicURL = stringBuilder.toString();                     
@@ -31,7 +36,12 @@ public class WebAddressBuilder
     
     public static String SendMessage(String message, long infoType, long timeout)
     {
-    	    	    	
+    	String checkIPMessage = CheckIPSettings();
+		if(checkIPMessage != null)
+		{
+			return checkIPMessage;
+		}	
+    	
     	String formURL = "message?text=" + message + "&type=" + infoType + "&timeout=" + timeout;
     	
     	String result = Send(formURL);
@@ -48,24 +58,42 @@ public class WebAddressBuilder
     	
     	return outputMessage;    	
     }
-         
-    public static boolean TestConnection()
+
+	public static String TestConnection()
     {
+		String checkIPMessage = CheckIPSettings();
+		if(checkIPMessage != null)
+		{
+			return checkIPMessage;
+		}
+		
     	String formURL = "about";
     	
     	String result = Send(formURL);
     	
     	if (result.equals("OK"))
         {
-            return true;
+            return "Connection OK";
         }
         else
         {
-        	return false;
+        	return "Connection failed";
         }    	    	
     }
+	
+	
     
-    private static String Send(String URL)
+    private static String CheckIPSettings() {
+		
+    	if(IPNumber == null || IPNumber.length() == 0)
+    	{
+    		return "IP address settings are empty";    	
+    	}
+    	
+   		return null;
+	}
+
+	private static String Send(String URL)
     {
     	URL url = null;
     	try 
