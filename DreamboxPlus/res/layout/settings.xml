@@ -1,27 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="vertical" >
+<LinearLayout
+    		xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/linearLayout4"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+     
+    <TableLayout
+        
+        android:id="@+id/tableLayout1"
+        android:layout_height="0dp"
+        android:layout_weight="0.12" android:layout_width="fill_parent">
 
-    <TextView
-        android:id="@+id/connectionAddressText"
+        
+
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"   >
+
+            <TextView
+                android:id="@+id/connectionAddressText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/ipAddress"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        </TableRow>
+
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            
+             <RadioButton
+            android:id="@+id/connectionAddressRadioButton1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/connectionAddressEditText1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textUri" />
+            
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" >
+
+            <RadioButton
+                android:id="@+id/connectionAddressRadioButton2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <EditText
+                android:id="@+id/connectionAddressEditText2"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:inputType="textUri" >
+
+                <requestFocus />
+            </EditText>
+        </LinearLayout>
+ 
+    </TableLayout>
+
+ 	<LinearLayout
+        android:id="@+id/linearLayout3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/ipAddress"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:orientation="vertical" >
 
-    <EditText
-        android:id="@+id/connectionAddressEditText"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" 
-        android:inputType="text|number"><requestFocus />
-    </EditText>
+        <TextView
+            android:id="@+id/portNumberText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/portNumber"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
 
-    <Button
-        android:id="@+id/testConnectionButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/testConnection" android:layout_gravity="right"/>
+        <EditText
+            android:id="@+id/portNumberEditText"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number" />
 
-</LinearLayout>
+    </LinearLayout>
+
+ 	<LinearLayout
+ 	    android:id="@+id/linearLayout5"
+ 	    android:layout_width="fill_parent"
+ 	    android:layout_height="wrap_content" >
+
+ 		<Button
+ 		    android:id="@+id/saveSettingsButton"
+ 		    android:layout_width="wrap_content"
+ 		    android:layout_height="wrap_content"
+ 		    android:text="@string/saveSettingsButton" />
+
+ 		<Button
+ 		    android:id="@+id/testConnectionButton"
+ 		    android:layout_width="wrap_content"
+ 		    android:layout_height="wrap_content"
+ 		    android:text="@string/testConnection" android:layout_gravity="right"/>
+
+ 	</LinearLayout>
+
+    </LinearLayout>

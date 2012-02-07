@@ -7,7 +7,8 @@
     <string name="infoType3">Message</string>
     <string name="infoType4">Attention</string>
     
-    <string name="ipAddress">Connection address</string>
+    <string name="ipAddress">Connection addresses</string>
+    <string name="ipAddress2">Connection address 2</string>
     
     <string name="message">Message</string>
     
@@ -16,4 +17,6 @@
     <string name="testConnection">Test connection</string>
     <string name="messageType">Message type</string>
     <string name="timeout">Timeout (secs)</string>
+    <string name="portNumber">Port number</string>
+    <string name="saveSettingsButton">Save</string>
     </resources>
