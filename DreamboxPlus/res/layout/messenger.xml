@@ -20,7 +20,25 @@
   <TableLayout
  	    android:id="@+id/tableLayout1"
  	    android:layout_width="fill_parent"
- 	    android:layout_height="wrap_content" >
+ 	    android:layout_height="wrap_content">
+
+      <TableRow
+          android:id="@+id/tableRow3"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content" >
+
+          <Button
+              android:id="@+id/saveMessageButton"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content" android:text="@string/saveMessage" android:layout_weight="0.5"/>
+
+          <Button
+              android:id="@+id/messagePickerButton"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:text="@string/pickMessage" android:layout_weight="0.5"/>
+
+      </TableRow>
 
     <TableRow
         android:id="@+id/tableRow1"
@@ -29,17 +47,16 @@
 
       <TextView
         android:id="@+id/textView2"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/messageType"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+        android:textAppearance="?android:attr/textAppearanceSmall" android:layout_width="0dp" android:layout_weight="0.7"/>
 
       <TextView
 		 	    android:id="@+id/textView3"
-		 	    android:layout_width="wrap_content"
+		 	    android:layout_width="0dp"
 		 	    android:layout_height="wrap_content"
 		 	    android:text="@string/timeout"
-		 	    android:textAppearance="?android:attr/textAppearanceSmall" />
+		 	    android:textAppearance="?android:attr/textAppearanceSmall" android:layout_weight="0.3"/>
 
     </TableRow>
 
@@ -49,16 +66,15 @@
         android:layout_height="wrap_content" >
 
       <Spinner android:id="@+id/SpinnerInfoType"
-          android:layout_width="129dp"
           android:layout_height="wrap_content"
-          android:entries="@array/infoTypeList" />
+          android:entries="@array/infoTypeList" android:layout_width="0dp" android:layout_weight="0.7" android:paddingTop="18dp"/>
 
       <EditText
           android:id="@+id/timeoutEdit"
-          android:layout_width="81dp"
+          android:layout_width="0dp"
           android:layout_height="wrap_content"
-          android:layout_weight="0.11"
-          android:inputType="number" >
+          android:layout_weight="0.3"
+          android:inputType="number">
 
         <requestFocus />
       </EditText>
@@ -68,14 +84,12 @@
 
   <LinearLayout
 	    android:layout_width="fill_parent"
-	    android:layout_height="fill_parent"
+	    android:layout_height="wrap_content"
 	    android:orientation="vertical" >
 
     <Button
         android:id="@+id/SendMessageButton"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:text="@string/send" />
+        android:text="@string/send" android:layout_width="98dp" android:layout_gravity="right"/>
   </LinearLayout>
 </LinearLayout>

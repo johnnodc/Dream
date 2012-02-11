@@ -4,7 +4,7 @@
             android:id="@+id/linearLayout4"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
      
     <TableLayout
         
@@ -71,41 +71,41 @@
 
  	<LinearLayout
         android:id="@+id/linearLayout3"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical" >
 
         <TextView
             android:id="@+id/portNumberText"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/portNumber"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
+            android:textAppearance="?android:attr/textAppearanceSmall" android:gravity="right" android:paddingRight="24dp"/>
 
         <EditText
             android:id="@+id/portNumberEditText"
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="number" />
+            android:inputType="number" android:layout_gravity="right" android:width="105dp"/>
 
     </LinearLayout>
 
  	<LinearLayout
  	    android:id="@+id/linearLayout5"
  	    android:layout_width="fill_parent"
- 	    android:layout_height="wrap_content" >
+ 	    android:layout_height="wrap_content" android:orientation="horizontal">
 
  		<Button
  		    android:id="@+id/saveSettingsButton"
- 		    android:layout_width="wrap_content"
+ 		    android:layout_width="0dp"
  		    android:layout_height="wrap_content"
- 		    android:text="@string/saveSettingsButton" />
+ 		    android:text="@string/saveSettingsButton" android:layout_weight="0.5"/>
 
  		<Button
  		    android:id="@+id/testConnectionButton"
- 		    android:layout_width="wrap_content"
+ 		    android:layout_width="0dp"
  		    android:layout_height="wrap_content"
- 		    android:text="@string/testConnection" android:layout_gravity="right"/>
+ 		    android:text="@string/testConnection" android:layout_weight="0.5"/>
 
  	</LinearLayout>
 
