@@ -174,7 +174,7 @@ public class SettingsActivity extends Activity {
 			e.printStackTrace();			
 			return;
 		}
-    	
+    	/*
 		ObjectInputStream is = null;
 		try 
 		{
@@ -222,8 +222,12 @@ public class SettingsActivity extends Activity {
     	{		
 			e.printStackTrace();
 			ToastMessage.Show("Failed to open file " + e.getMessage(), getApplicationContext());
-		}
+		}*/
     	
+		
+		Filer filer = new Filer();
+		Settings settings = (Settings)filer.LoadSettings(fis, getApplicationContext());
+		
     	if(settings.connectionSelectionRadio1)
 		{
 			connectionSelectionRadio1.setChecked(true);
