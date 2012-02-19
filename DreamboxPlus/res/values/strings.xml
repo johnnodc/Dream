@@ -22,4 +22,11 @@
     <string name="timeout">Timeout (secs)</string>
     <string name="portNumber">Port number</string>
     <string name="saveSettingsButton">Save</string>
+    <string name="manageMessages">Manage messages</string>
+    <string name="addCategory">Add category</string>
+    <string name="deleteCategory">Delete category</string>
+    <string name="addMessage">Add message</string>
+    <string name="categoriesTitle">Categories</string>
+    <string name="messagesTitle">Messages</string>
+    <string name="deleteMessages">Delete message</string>
     </resources>

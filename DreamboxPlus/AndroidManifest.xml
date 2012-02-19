@@ -21,6 +21,8 @@
         <activity android:name="SettingsActivity"></activity>
         <activity android:name="MessengerActivity"></activity>
         <activity android:name=".MessagePicker"></activity>
+        <activity android:name="MessagesActivity"></activity>
+        <activity android:name=".ManageMessages"></activity>
         
     </application>
 

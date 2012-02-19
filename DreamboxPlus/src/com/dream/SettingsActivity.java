@@ -3,11 +3,6 @@ package com.dream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.OptionalDataException;
-import java.io.StreamCorruptedException;
 
 import android.app.Activity;
 import android.content.Context;
@@ -27,7 +22,7 @@ public class SettingsActivity extends Activity {
 	RadioButton connectionSelectionRadio1;
 	RadioButton connectionSelectionRadio2;
 	
-	Settings settings;
+	private Settings settings;
 	
 	final static String SAVE_SETTINGS_FILENAME = "DSettings";
 	final static String RESTORE_SETTING_ADDRESS1 = "connectAddress1String";
@@ -41,7 +36,6 @@ public class SettingsActivity extends Activity {
 	    super.onCreate(savedInstanceState);
 	    
 	    setContentView(R.layout.settings);
-	    
 	    
 	    connectionSelectionRadio1 = (RadioButton) findViewById(R.id.connectionAddressRadioButton1);
 	    connectionSelectionRadio2 = (RadioButton) findViewById(R.id.connectionAddressRadioButton2);
@@ -68,10 +62,11 @@ public class SettingsActivity extends Activity {
 	    Button testConnectionButton = (Button) findViewById(R.id.testConnectionButton);
 	    testConnectionButton.setOnClickListener(TestButtonSelected());
 	    
-	    settings = new Settings();
+	    setSettings(new Settings());
 	    
 	    LoadSettings();
 	    
+	    UpdateUI();
 	}
 	
 	
@@ -98,7 +93,7 @@ public class SettingsActivity extends Activity {
 		};
 	}
 
-
+ 
 	private TextWatcher ConnectionAddressEditText2Listner() {
 		// TODO Auto-generated method stub
 		return new TextWatcher() {
@@ -174,77 +169,31 @@ public class SettingsActivity extends Activity {
 			e.printStackTrace();			
 			return;
 		}
-    	/*
-		ObjectInputStream is = null;
-		try 
-		{
-			is = new ObjectInputStream(fis);
-		} 
-		catch (StreamCorruptedException e) 
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			ToastMessage.Show("Failed to open file " + e.getMessage(), getApplicationContext());
-		} 
-		catch (IOException e) 
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			ToastMessage.Show("Failed to open file " + e.getMessage(), getApplicationContext());
-		}
-    	try 
-    	{
-			settings = (Settings) is.readObject();
-		} 
-    	catch (OptionalDataException e) 
-    	{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			ToastMessage.Show("Failed to open file " + e.getMessage(), getApplicationContext());
-		} 
-    	catch (ClassNotFoundException e) 
-    	{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			ToastMessage.Show("Failed to open file " + e.getMessage(), getApplicationContext());
-		} 
-    	catch (IOException e) 
-    	{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    	try 
-    	{
-			is.close();
-			
-		} 
-    	catch (IOException e) 
-    	{		
-			e.printStackTrace();
-			ToastMessage.Show("Failed to open file " + e.getMessage(), getApplicationContext());
-		}*/
-    	
-		
-		Filer filer = new Filer();
-		Settings settings = (Settings)filer.LoadSettings(fis, getApplicationContext());
-		
-    	if(settings.connectionSelectionRadio1)
-		{
-			connectionSelectionRadio1.setChecked(true);
-			connectionSelectionRadio2.setChecked(false);			
-		}
-		else
-		{
-			connectionSelectionRadio1.setChecked(false);
-			connectionSelectionRadio2.setChecked(true);			
-		}
-    	
-    	connectionAddressEditText1.setText(settings.IPConnectionAddress1);
-		connectionAddressEditText2.setText(settings.IPConnectionAddress2);
-		portNumberEditText.setText(settings.portNumber);				
+    			
+		setSettings((Settings)Filer.Load(fis, getApplicationContext()));		
 	}
 
-
+	private void UpdateUI()
+	{
+		if(getSettings() != null)
+		{
+	    	if(getSettings().connectionSelectionRadio1)
+			{
+				connectionSelectionRadio1.setChecked(true);
+				connectionSelectionRadio2.setChecked(false);			
+			}
+			else
+			{
+				connectionSelectionRadio1.setChecked(false);
+				connectionSelectionRadio2.setChecked(true);			
+			}
+	    	
+	    	connectionAddressEditText1.setText(getSettings().IPConnectionAddress1);
+			connectionAddressEditText2.setText(getSettings().IPConnectionAddress2);
+			portNumberEditText.setText(getSettings().portNumber);
+		}
+	}
+	
 	private OnClickListener TestButtonSelected()
     {
     	return new OnClickListener() {			
@@ -262,47 +211,31 @@ public class SettingsActivity extends Activity {
 		{		
 			public void onClick(View v) 
 			{																
-				settings.IPConnectionAddress1 = connectionAddressEditText1.getText().toString();
-				settings.IPConnectionAddress2 = connectionAddressEditText2.getText().toString();
-				settings.portNumber = portNumberEditText.getText().toString();		
-				settings.connectionSelectionRadio1 = connectionSelectionRadio1.isChecked();
+				getSettings().IPConnectionAddress1 = connectionAddressEditText1.getText().toString();
+				getSettings().IPConnectionAddress2 = connectionAddressEditText2.getText().toString();
+				getSettings().portNumber = portNumberEditText.getText().toString();		
+				getSettings().connectionSelectionRadio1 = connectionSelectionRadio1.isChecked();
 
 				FileOutputStream fos = null;
-				try {
+				try 
+				{
 					fos = openFileOutput(SAVE_SETTINGS_FILENAME, Context.MODE_PRIVATE);
-				} catch (FileNotFoundException e) {
+				} 
+				catch (FileNotFoundException e) 
+				{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 					ToastMessage.Show("Failed to open file for saving " + e.getMessage(), getApplicationContext());
 					return;
 				}
 				
-				ObjectOutputStream os = null;
-				try {
-					os = new ObjectOutputStream(fos);
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-					ToastMessage.Show("Failed to create steam for saving " + e1.getMessage(), getApplicationContext());
-					return;
+				boolean result;
+				result = Filer.Save(getSettings(), fos, getApplicationContext());
+				
+				if(!result)
+				{
+					ToastMessage.Show("Saved settings", getApplicationContext());
 				}
-				try {
-					os.writeObject(settings);
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-					ToastMessage.Show("Failed to save data " + e.getMessage(), getApplicationContext());
-					return;
-				}
-				try {
-					os.close();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-					ToastMessage.Show("Failed to close file " + e.getMessage(), getApplicationContext());
-					return;
-				}
-				ToastMessage.Show("Saved settings", getApplicationContext());
 			}
 		};
 	}
@@ -331,5 +264,17 @@ public class SettingsActivity extends Activity {
 		portNumberEditText.setText(savedInstanceState.getString(RESTORE_SETTING_PORT));
 		connectionSelectionRadio1.setChecked(savedInstanceState.getBoolean(RESTORE_SETTING_CONNECTION_SELECTION));
 	}
-	
+
+	private Settings getSettings() 
+	{
+		return settings;
+	}
+
+	private void setSettings(Settings settings) 
+	{
+		if(settings != null)
+		{
+			this.settings = settings;
+		}
+	}
 }

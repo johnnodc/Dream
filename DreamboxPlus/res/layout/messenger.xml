@@ -30,13 +30,23 @@
           <Button
               android:id="@+id/saveMessageButton"
               android:layout_width="0dp"
-              android:layout_height="wrap_content" android:text="@string/saveMessage" android:layout_weight="0.5"/>
+              android:layout_height="wrap_content" 
+              android:text="@string/saveMessage" 
+              android:layout_weight="0.33"/>
+
+          <Button
+              android:id="@+id/manageMessagesButton"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:text="@string/manageMessages" 
+              android:layout_weight="0.33"/>
 
           <Button
               android:id="@+id/messagePickerButton"
               android:layout_width="0dp"
               android:layout_height="wrap_content"
-              android:text="@string/pickMessage" android:layout_weight="0.5"/>
+              android:text="@string/pickMessage" 
+              android:layout_weight="0.33"/>
 
       </TableRow>
 
