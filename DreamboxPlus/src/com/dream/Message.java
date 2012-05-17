@@ -12,4 +12,8 @@ public class Message implements Serializable
 	String Category;
 	
 	String Message;
+	
+	long MessageType;
+	
+	String Timeout;
 }

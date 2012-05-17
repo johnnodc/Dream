@@ -41,6 +41,8 @@ public class WebAddressBuilder
 		{
 			return checkIPMessage;
 		}	
+		
+		message = ConvertURLMessage(message);
     	
     	String formURL = "message?text=" + message + "&type=" + infoType + "&timeout=" + timeout;
     	
@@ -81,7 +83,10 @@ public class WebAddressBuilder
         }    	    	
     }
 	
-	
+	private static String ConvertURLMessage(String message)
+	{
+		return message.replaceAll(" ", "%20");
+	}
     
     private static String CheckIPSettings() {
 		

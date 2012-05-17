@@ -67,6 +67,8 @@ public class SettingsActivity extends Activity {
 	    LoadSettings();
 	    
 	    UpdateUI();
+	    
+	    SetIPAddress();
 	}
 	
 	

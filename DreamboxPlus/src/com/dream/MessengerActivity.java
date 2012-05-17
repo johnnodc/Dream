@@ -65,14 +65,29 @@ public class MessengerActivity extends Activity {
 		return new OnClickListener() {
 			
 			public void onClick(View arg0) {
+				
 				if(messageText.getText().toString().length() == 0)
             	{
             		ToastMessage.Show("Message text is missing", getApplicationContext());
             		return;
             	}
+				
+				long timeout;
+               	try
+               	{
+               		timeout = Long.parseLong(timeoutEdit.getText().toString());               	               
+               	}
+               	catch(Exception e)
+               	{
+               		ToastMessage.Show("Invalid timeout value", getApplicationContext());
+               		return;
+               	}
+               	
 				Intent intent = new Intent();
 				intent.putExtra("SaveSelected", true);
 				intent.putExtra("Message", messageText.getText().toString());
+				intent.putExtra("MessageType", infoSpinner.getSelectedItemPosition());
+				intent.putExtra("Timeout", timeoutEdit.getText().toString());
 			    intent.setClass(getApplicationContext(), MessagePicker.class);
 			    startActivityForResult(intent, GET_CODE);						
 			}
@@ -92,11 +107,20 @@ public class MessengerActivity extends Activity {
             		return;
             	}
             	
-               	long infoType = infoSpinner.getSelectedItemId();
+               	long infoType = infoSpinner.getSelectedItemPosition();
                	
                	String timeoutString = timeoutEdit.getText().toString();
                	
-               	long timeout = Long.parseLong(timeoutString);               	               
+               	long timeout;
+               	try
+               	{
+               		timeout = Long.parseLong(timeoutString);               	               
+               	}
+               	catch(Exception e)
+               	{
+               		ToastMessage.Show("Invalid timeout value", getApplicationContext());
+               		return;
+               	}
                	
             	String outputMessage = WebAddressBuilder.SendMessage(messageText.getText().toString(), infoType, timeout);
                 
@@ -127,6 +151,8 @@ public class MessengerActivity extends Activity {
 	   if (resultCode == RESULT_OK) {
 		   String message = data.getStringExtra("MessageSelected");
 		   messageText.setText(message);		   
+		   infoSpinner.setSelection((int) data.getLongExtra("MessageType", 1));
+		   timeoutEdit.setText(data.getStringExtra("Timeout"));
 	   }
 	   else{
 		   //ToastMessage.Show("cancelled", getApplicationContext());
