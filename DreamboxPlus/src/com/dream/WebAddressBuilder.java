@@ -1,9 +1,22 @@
 package com.dream;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Random;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
 public class WebAddressBuilder
 {
@@ -13,6 +26,15 @@ public class WebAddressBuilder
     static String PortNumber;
 
     private static String basicURL;
+    
+    private static int randomMessageNumber = 0;
+    
+    private static String randomMessage[] = new String[] {"Is your android wifi or 3G switched on?",
+    										"Is your sat box switched on?",
+    										"Does your sat box web interface switched on?",
+	  										"Are you using the right web address and port to match the web interface?"};
+    
+    private static Document xmlDocument = null;
 
     public static void SetIPAddress(String ipAddress, String port)
     {
@@ -55,7 +77,7 @@ public class WebAddressBuilder
         }
         else
         {
-        	outputMessage = "Oops failed to send message " + result;
+        	outputMessage = "Oops failed to send message\nCheck your settings are ok";
         }
     	
     	return outputMessage;    	
@@ -73,15 +95,29 @@ public class WebAddressBuilder
     	
     	String result = Send(formURL);
     	
-    	if (result.equals("OK"))
+    	  
+    	   	 
+    	if (result.equals("OK")) 
         {
             return "Connection OK";
         }
         else
         {
-        	return "Connection failed";
+        	return "Connection failed\n\n" + randomMessage[GetNextRandomNumber()];        	
         }    	    	
     }
+	
+	private static int GetNextRandomNumber()
+	{
+		randomMessageNumber++;
+		
+		if(randomMessageNumber > randomMessage.length)
+		{
+			randomMessageNumber = 0;
+		}
+		
+		return randomMessageNumber;
+	}
 	
 	private static String ConvertURLMessage(String message)
 	{
@@ -125,7 +161,28 @@ public class WebAddressBuilder
 			catch (IOException e) 
 			{
 				e.printStackTrace();
-			}	  
+			}	
+			if(result != null && result.equals("OK"))
+			{
+				
+				DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+				DocumentBuilder parser = null;
+				
+				try {
+					parser = factory.newDocumentBuilder();
+				} catch (ParserConfigurationException e1) {
+					
+					e1.printStackTrace();
+				}
+				try {
+					xmlDocument = parser.parse(urlConnection.getInputStream());
+				} catch (SAXException e) {
+					
+					e.printStackTrace();
+				}
+				
+			}
+			
 		} 
 		catch (IOException e1) 
 		{
@@ -137,4 +194,18 @@ public class WebAddressBuilder
         }
 		return result; 
     }
+
+	public static String ResponseMessage() {
+		// TODO Auto-generated method stub
+		
+		String result = Send("messageanswer?getanswer=now");
+		
+		NodeList list = xmlDocument.getElementsByTagName("e2statetext");
+		 if(list.getLength() != 0){
+			  Node node = list.item(0);
+			  result = node.getFirstChild().getNodeValue();
+		 }
+		
+		return result;
+	}
 }

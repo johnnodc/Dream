@@ -18,6 +18,7 @@ public class MessengerActivity extends Activity {
 	Button sendButton;
 	Button messagePickerButton;
 	Button saveMessageButton;
+	Button responseMessageButton;
 	Button manageMessagesButton;
 	
 	/** Called when the activity is first created. */
@@ -33,6 +34,7 @@ public class MessengerActivity extends Activity {
         timeoutEdit = (EditText) findViewById(R.id.timeoutEdit);
         messagePickerButton = (Button) findViewById(R.id.messagePickerButton);
         saveMessageButton = (Button) findViewById(R.id.saveMessageButton);
+        responseMessageButton = (Button) findViewById(R.id.ResponseMessageButton);
         manageMessagesButton = (Button) findViewById(R.id.manageMessagesButton);
                       
         timeoutEdit.setText("10");
@@ -46,8 +48,22 @@ public class MessengerActivity extends Activity {
         
         manageMessagesButton.setOnClickListener(ManageMessagesSelected());
         
+        responseMessageButton.setOnClickListener(GetResponseSelected());
+        
    	}
 	
+	private OnClickListener GetResponseSelected() {
+		// TODO Auto-generated method stub
+		return new OnClickListener() {
+			
+			public void onClick(View v) {
+				String outputMessage = WebAddressBuilder.ResponseMessage();
+                
+            	ToastMessage.Show(outputMessage, getApplicationContext()); 				
+			}
+		};
+	}
+
 	private OnClickListener ManageMessagesSelected() {
 		return new OnClickListener() {
 			

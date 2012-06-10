@@ -29,4 +29,6 @@
     <string name="categoriesTitle">Categories</string>
     <string name="messagesTitle">Messages</string>
     <string name="deleteMessages">Delete message</string>
+    <string name="reply">Get response</string>
+    <string name="response">Get response</string>
     </resources>

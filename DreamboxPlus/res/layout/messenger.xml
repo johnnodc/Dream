@@ -77,7 +77,7 @@
 
       <Spinner android:id="@+id/SpinnerInfoType"
           android:layout_height="wrap_content"
-          android:entries="@array/infoTypeList" android:layout_width="0dp" android:layout_weight="0.7" android:paddingTop="18dp"/>
+          android:entries="@array/infoTypeList" android:layout_width="0dp" android:layout_weight="0.7"/>
 
       <EditText
           android:id="@+id/timeoutEdit"
@@ -90,16 +90,33 @@
       </EditText>
     </TableRow>
 
+    <TableRow
+        android:id="@+id/tableRow4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">    
+        
+        <Button
+        android:id="@+id/SendMessageButton"
+        android:layout_height="wrap_content"
+        android:text="@string/send" 
+        android:layout_width="0dp" 
+        android:layout_weight="0.5"/>
+    
+    <Button
+        android:id="@+id/ResponseMessageButton"
+        android:layout_height="wrap_content"
+        android:text="@string/response" 
+        android:layout_width="0dp" 
+        android:layout_weight="0.5"/> 
+        </TableRow>
   </TableLayout>
 
   <LinearLayout
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
-	    android:orientation="vertical" >
+	    android:orientation="horizontal" >
 
-    <Button
-        android:id="@+id/SendMessageButton"
-        android:layout_height="wrap_content"
-        android:text="@string/send" android:layout_width="98dp" android:layout_gravity="right"/>
+    
+    
   </LinearLayout>
 </LinearLayout>
